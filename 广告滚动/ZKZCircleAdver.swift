@@ -5,7 +5,7 @@
 //  Created by 张凯泽 on 16/11/9.
 //  Copyright © 2016年 rytong_zkz. All rights reserved.
 //
- protocol ZKZCircleDelegate :NSObjectProtocol
+@objc protocol ZKZCircleDelegate :NSObjectProtocol
 {
     func didClickBannerIndex(index: Int)
 }
@@ -16,7 +16,7 @@ enum PageControlPositon
 import Foundation
 import UIKit
 
-class ZKZCircle: UIView {
+public class ZKZCircle: UIView {
    weak var CircleDelegate : ZKZCircleDelegate?
     var placeHolderImage : UIImage?
     /// 定时器
@@ -137,7 +137,7 @@ class ZKZCircle: UIView {
         }
         //timeSeconds = 3
     }
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
@@ -232,7 +232,7 @@ extension ZKZCircle{
 
 extension ZKZCircle:UIScrollViewDelegate
 {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         guard imageGroup?.count != nil else {
             return
@@ -250,15 +250,15 @@ extension ZKZCircle:UIScrollViewDelegate
         }
         
     }
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
         scrollView.setContentOffset(CGPoint.init(x: Width, y: 0), animated: true)
     }
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         removeTimer()
     }
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         addTimer()
     }
 
